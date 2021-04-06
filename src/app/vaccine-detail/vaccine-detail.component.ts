@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {Vaccine} from '../vaccine/vaccine';
 
 @Component({
-  selector: 'app-vaccine-detail',
-  templateUrl: './vaccine-detail.component.html',
-  styleUrls: ['./vaccine-detail.component.scss']
+	selector: 'app-vaccine-detail',
+	templateUrl: './vaccine-detail.component.html',
+	styleUrls: ['./vaccine-detail.component.scss']
 })
 export class VaccineDetailComponent implements OnInit {
 
-  constructor() { }
+	@Input() vaccine: Vaccine;
 
-  ngOnInit(): void {
-  }
+	constructor() {
+	}
+
+	ngOnInit(): void {
+	}
 
 }

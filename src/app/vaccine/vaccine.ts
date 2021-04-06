@@ -1,4 +1,4 @@
 export interface Vaccine {
-  manufacturerName: string;
-  numberOfDossesNeeded: number;
+	manufacturerName: string;
+	numberOfDossesNeeded: number;
 }

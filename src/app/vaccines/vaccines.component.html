@@ -1,7 +1,20 @@
 <h2>Popis cjepiva</h2>
 
-<ul>
-  <li *ngFor="let vaccine of vaccines">
-    <span>{{vaccine.manufacturerName}}, {{vaccine.numberOfDossesNeeded}}</span>
-  </li>
-</ul>
+<table>
+    <tr>
+        <th></th>
+        <th>Manufacturer name</th>
+        <th>Number of dosses needed</th>
+    </tr>
+
+    <tr *ngFor="let vaccine of vaccines"
+        (click)="onSelect(vaccine)"
+        [class.selected]="vaccine === selectedVaccine">
+
+        <th>💉</th>
+        <th>{{vaccine.manufacturerName}}</th>
+        <th>{{vaccine.numberOfDossesNeeded}}</th>
+    </tr>
+</table>
+
+<app-vaccine-detail [vaccine]="selectedVaccine"></app-vaccine-detail>
