@@ -5,17 +5,21 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { VaccinesComponent } from './vaccines/vaccines.component';
 import { VaccineDetailComponent } from './vaccine-detail/vaccine-detail.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import {FormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     VaccinesComponent,
-    VaccineDetailComponent
+    VaccineDetailComponent,
+    FilterPipe
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+	imports: [
+		BrowserModule,
+		AppRoutingModule,
+		FormsModule
+	],
   providers: [],
   bootstrap: [AppComponent]
 })

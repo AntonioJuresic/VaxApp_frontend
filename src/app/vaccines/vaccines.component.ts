@@ -12,6 +12,8 @@ export class VaccinesComponent implements OnInit {
 	vaccines: Vaccine[];
 	selectedVaccine: Vaccine;
 
+	QueryName = '';
+
 	constructor(private vaccineService: VaccineService) {
 	}
 

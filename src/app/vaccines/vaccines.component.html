@@ -1,19 +1,26 @@
 <h2>Popis cjepiva</h2>
 
-<table>
+<div class="form-group">
+    <label>
+        <p class="font-weight-bold">Pretraga po imenu:</p>
+    </label>
+    <input type="text" class="form-control" [(ngModel)]="QueryName">
+</div>
+
+<br>
+
+<table style="text-align: left;">
     <tr>
         <th></th>
         <th>Manufacturer name</th>
-        <th>Number of dosses needed</th>
     </tr>
 
-    <tr *ngFor="let vaccine of vaccines"
+    <tr *ngFor="let vaccine of vaccines | filter: 'manufacturerName' : QueryName "
         (click)="onSelect(vaccine)"
         [class.selected]="vaccine === selectedVaccine">
 
         <th>💉</th>
-        <th>{{vaccine.manufacturerName}}</th>
-        <th>{{vaccine.numberOfDossesNeeded}}</th>
+        <th><a href="#">{{vaccine.manufacturerName}}</a></th>
     </tr>
 </table>
 
