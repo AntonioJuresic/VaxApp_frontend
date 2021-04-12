@@ -15,13 +15,10 @@
         <th>Manufacturer name</th>
     </tr>
 
-    <tr *ngFor="let vaccine of vaccines | filter: 'manufacturerName' : QueryName "
-        (click)="onSelect(vaccine)"
-        [class.selected]="vaccine === selectedVaccine">
-
+    <tr *ngFor="let vaccine of vaccines | filter: 'manufacturerName' : QueryName ">
         <th>💉</th>
         <th><a href="#">{{vaccine.manufacturerName}}</a></th>
     </tr>
 </table>
 
-<app-vaccine-detail [vaccine]="selectedVaccine"></app-vaccine-detail>
+<app-vaccine-detail></app-vaccine-detail>

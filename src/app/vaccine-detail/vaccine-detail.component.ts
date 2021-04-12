@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Vaccine} from '../vaccine/vaccine';
+import {Vaccine} from '../shared/models/vaccine';
 
 @Component({
 	selector: 'app-vaccine-detail',
@@ -8,7 +8,6 @@ import {Vaccine} from '../vaccine/vaccine';
 })
 export class VaccineDetailComponent implements OnInit {
 
-	@Input() vaccine: Vaccine;
 
 	constructor() {
 	}

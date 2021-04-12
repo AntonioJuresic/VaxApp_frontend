@@ -1,4 +1,4 @@
-import {Vaccine} from './vaccine';
+import {Vaccine} from '../models/vaccine';
 
 export const VACCINES: Vaccine[] = [
 	{manufacturerName: 'Pfizer-BioNTech', numberOfDossesNeeded: 2},

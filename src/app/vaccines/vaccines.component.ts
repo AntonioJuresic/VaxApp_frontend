@@ -1,33 +1,33 @@
-import {Component, OnInit} from '@angular/core';
-import {Vaccine} from '../vaccine/vaccine';
-import {VaccineService} from '../vaccine/vaccine.service';
+import { Component, OnInit } from '@angular/core';
+import { BehaviorSubject, Subscription } from 'rxjs';
+import { Vaccine } from '../shared/models/vaccine';
+import { VaccineService } from '../shared/services/vaccine.service';
 
 @Component({
-	selector: 'app-vaccines',
-	templateUrl: './vaccines.component.html',
-	styleUrls: ['./vaccines.component.scss']
+    selector: 'app-vaccines',
+    templateUrl: './vaccines.component.html',
+    styleUrls: ['./vaccines.component.scss']
 })
 export class VaccinesComponent implements OnInit {
 
-	vaccines: Vaccine[];
-	selectedVaccine: Vaccine;
+    vaccines: Vaccine[];
+    vaccinesSubject: BehaviorSubject<Vaccine[]> = new BehaviorSubject(null);
+    subscription : Subscription;
+    
+    QueryName = '';
 
-	QueryName = '';
+    constructor(private vaccineService: VaccineService) { }
 
-	constructor(private vaccineService: VaccineService) {
-	}
+    ngOnInit(): void {
+        this.getVaccines();
+    }
 
-	ngOnInit(): void {
-		this.getVaccines();
-	}
-
-	getVaccines(): void {
-		this.vaccineService.getVaccines()
-			.subscribe(vaccines => this.vaccines = vaccines);
-	}
-
-	onSelect(vaccine: Vaccine): void {
-		this.selectedVaccine = vaccine;
-	}
+    getVaccines(): void {
+        this.vaccinesSubject = this.vaccineService.getVaccines();
+        this.subscription = this.vaccinesSubject
+            .subscribe(res => {
+                this.vaccines = res;
+            });
+    }
 
 }

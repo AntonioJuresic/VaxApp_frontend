@@ -1,4 +1,4 @@
-export interface Vaccine {
+export class Vaccine {
 	manufacturerName: string;
 	numberOfDossesNeeded: number;
 }
