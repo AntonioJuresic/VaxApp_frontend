@@ -11,7 +11,6 @@ export class VaccineService {
     vaccinesDTO: VaccineDTO[] = [];
     vaccinesDTOSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
 
-
     vaccineDTO: VaccineDTO = new VaccineDTO;
     vaccineDTOSubject: BehaviorSubject<VaccineDTO> = new BehaviorSubject(null);
 
@@ -21,14 +20,13 @@ export class VaccineService {
 
     getVaccines() {
         this.dataService.getVaccines()
-            .subscribe(res => {
+            .subscribe((res: VaccineDTO[]) => {
                 if(res) {
                     this.vaccinesDTO = res;
                     console.log(this.vaccinesDTO);
-                    this.vaccinesDTOSubject.next(this.vaccinesDTO);
-                } else {
-                    this.vaccinesDTOSubject.next(undefined);
                 }
+
+                this.vaccinesDTOSubject.next(res);
             });
 
         return this.vaccinesDTOSubject;
@@ -36,27 +34,18 @@ export class VaccineService {
 
     addVaccine(newVaccine) {
         this.dataService.addVaccine(newVaccine)
-            .subscribe(res => {
+            .subscribe((res: VaccineDTO) => {
                 if(res) {
                     this.vaccinesDTO.push(res);
                     this.vaccinesDTOSubject.next(this.vaccinesDTO)
                 }
+                    
+                this.vaccineDTOSubject.next(res);
             });
     }
 
     getVaccine(researchName) {
-        this.dataService.getVaccine(researchName)
-            .subscribe(res => {
-                if (res) {
-                    this.vaccineDTO = res;
-                    console.log(this.vaccineDTO);
-                    this.vaccineDTOSubject.next(this.vaccineDTO);
-                } else {
-                    this.vaccineDTOSubject.next(undefined);
-                }
-            });
-
-        return this.vaccineDTOSubject;
+        return this.dataService.getVaccine(researchName);
     }
 
     deleteVaccine(researchName) {

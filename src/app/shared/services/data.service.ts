@@ -24,7 +24,7 @@ export class DataService {
     getVaccines(): Observable<VaccineDTO[]> {
         return this.http.get<VaccineDTO[]>(this.apiRoot + this.vaccinesRoot).pipe(
             tap((vaccinesDTO: VaccineDTO[]) => console.log("Uspjesno dohvacanje")),
-            catchError((error: any) => { return this.errorHandler(error); })
+            catchError((error: any) => { return this.errorHandler<VaccineDTO[]>(error, []); })
         )
     }
     
@@ -38,15 +38,15 @@ export class DataService {
     getVaccine(researchName): Observable<VaccineDTO> {
         return this.http.get<VaccineDTO>(this.apiRoot + this.vaccinesRoot + `/${researchName}`).pipe(
             tap((vaccinteDTO: VaccineDTO) => console.log("Uspjesno dohvacanje")),
-            catchError((error: any) => { return this.errorHandler(error); })
+            catchError((error: any) => { return this.errorHandler<VaccineDTO>(error); })
         )
     }
     
     deleteVaccine(researchName) { return this.http.delete<String>(this.apiRoot + this.vaccinesRoot + `/${researchName}`); }
 
-    errorHandler(error: any): Observable<undefined>{
-        console.log(error);
-        return of(undefined);
+    errorHandler<T>(error: any, returnValue?: T): Observable<T>{
+        console.error(error);
+        return of(returnValue as T);
     }
 
 }

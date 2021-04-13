@@ -23,25 +23,28 @@ export class VaccineDetailComponent implements OnInit {
 
     constructor(
         private route: ActivatedRoute,
-        private vaccineService: VaccineService
+        private dataService: DataService
     ) { }
 
     ngOnInit(): void {
         this.routeSubscription = this.route.params.subscribe(params => {
-            this.researchName = params['researchName']
+            this.researchName = params['researchName'];
+            this.getVaccine(this.researchName);
         });
+    }
 
-        this.vaccineDTOSubject = this.vaccineService.getVaccine(this.researchName);
-        this.subscription = this.vaccineDTOSubject
+    getVaccine(researchName){
+        this.dataService.getVaccine(this.researchName)
             .subscribe(res => {
-                if(res) {
+                if (res) {
                     this.vaccineDTO = res;
-                    this.errorMessage = undefined;
+                    console.log(this.vaccineDTO);
+                    this.vaccineDTOSubject.next(res);
                 } else {
-                    this.errorMessage = "Greska prilikom dohvacanja cjepiva.";
+                    this.vaccineDTOSubject.next(undefined);
+                    this.errorMessage = "Greška";
                 }
-                
             });
-        }
+    }
 
 }

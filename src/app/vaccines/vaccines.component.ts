@@ -29,11 +29,7 @@ export class VaccinesComponent implements OnInit {
         this.subscription = this.vaccinesDTOSubject
             .subscribe(res => {
                 if (res) {
-                    this.vaccinesDTO = res;
-                    this.errorMessage = undefined;
-                } else {
-                    this.errorMessage = "Greska prilikom dohvacanja cjepiva.";
-                }
+                    this.vaccinesDTO = res;}
             });
     }
 

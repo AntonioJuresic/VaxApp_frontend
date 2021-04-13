@@ -9,18 +9,20 @@
 
 <br>
 
-<table style="text-align: left;">
-    <tr>
-        <th></th>
-        <th>Istraživački naziv</th>
-        <th>Naziv proizdođača</th>
-        <th>Izbriši</th>
-    </tr>
-
-    <tr *ngFor="let vaccineDTO of vaccinesDTO | filter: 'researchName' : QueryName; let i=index;">
-        <th>💉</th>
-        <th><a [routerLink]="['/vaccines/', vaccineDTO.researchName]">{{vaccineDTO.researchName}}</a></th>
-        <th>{{vaccineDTO.manufacturerName}}</th>
-        <th><button (click)="deleteVaccine(i)">❌</button></th>
-    </tr>
-</table>
+<div *ngIf="vaccinesDTO.length != 0">
+    <table style="text-align: left;">
+        <tr>
+            <th></th>
+            <th>Istraživački naziv</th>
+            <th>Naziv proizdođača</th>
+            <th>Izbriši</th>
+        </tr>
+    
+        <tr *ngFor="let vaccineDTO of vaccinesDTO | filter: 'researchName' : QueryName; let i=index;">
+            <th>💉</th>
+            <th><a [routerLink]="['/vaccines/', vaccineDTO.researchName]">{{vaccineDTO.researchName}}</a></th>
+            <th>{{vaccineDTO.manufacturerName}}</th>
+            <th><button (click)="deleteVaccine(i)">❌</button></th>
+        </tr>
+    </table>
+</div>
