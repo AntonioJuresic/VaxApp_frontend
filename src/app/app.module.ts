@@ -6,19 +6,24 @@ import { AppComponent } from './app.component';
 import { VaccinesComponent } from './vaccines/vaccines.component';
 import { VaccineDetailComponent } from './vaccine-detail/vaccine-detail.component';
 import { FilterPipe } from './pipes/filter.pipe';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { VaccineNewComponent } from './vaccine-new/vaccine-new.component';
+import { VaccineEditComponent } from './vaccine-edit/vaccine-edit.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         VaccinesComponent,
         VaccineDetailComponent,
-        FilterPipe
+        FilterPipe,
+        VaccineNewComponent,
+        VaccineEditComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
+        ReactiveFormsModule,
         FormsModule,
         HttpClientModule
     ],

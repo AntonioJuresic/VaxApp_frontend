@@ -12,13 +12,17 @@
 <table style="text-align: left;">
     <tr>
         <th></th>
-        <th>Manufacturer name</th>
+        <th>Istraživački naziv</th>
+        <th>Naziv proizdođača</th>
+        <th>Ažuriraj</th>
+        <th>Izbriši</th>
     </tr>
 
-    <tr *ngFor="let vaccine of vaccines | filter: 'manufacturerName' : QueryName ">
+    <tr *ngFor="let vaccineDTO of vaccinesDTO | filter: 'researchName' : QueryName; let i=index;">
         <th>💉</th>
-        <th><a href="#">{{vaccine.manufacturerName}}</a></th>
+        <th><a [routerLink]="['/vaccines/', vaccineDTO.researchName]">{{vaccineDTO.researchName}}</a></th>
+        <th>{{vaccineDTO.manufacturerName}}</th>
+        <th><a [routerLink]="['/edit/', vaccineDTO.researchName]">Update</a></th>
+        <th><button (click)="deleteVaccine(i)">❌</button></th>
     </tr>
 </table>
-
-<app-vaccine-detail></app-vaccine-detail>

@@ -1,0 +1,7 @@
+<div *ngIf="vaccineDTO">
+    <p>{{vaccineDTO.researchName}}</p>
+    <p>{{vaccineDTO.manufacturerName}}</p>
+    <p>{{vaccineDTO.numberOfDossesNeeded}}</p>
+</div>
+
+<ng-template #elseBlock>{{errorMessage}}</ng-template>

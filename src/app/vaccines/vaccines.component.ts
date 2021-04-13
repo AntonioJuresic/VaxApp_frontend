@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BehaviorSubject, Subscription } from 'rxjs';
-import { Vaccine } from '../shared/models/vaccine';
+import { VaccineDTO } from '../shared/models/vaccineDTO';
 import { VaccineService } from '../shared/services/vaccine.service';
 
 @Component({
@@ -10,8 +10,8 @@ import { VaccineService } from '../shared/services/vaccine.service';
 })
 export class VaccinesComponent implements OnInit {
 
-    vaccines: Vaccine[];
-    vaccinesSubject: BehaviorSubject<Vaccine[]> = new BehaviorSubject(null);
+    vaccinesDTO: VaccineDTO[];
+    vaccinesSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
     subscription : Subscription;
     
     QueryName = '';
@@ -26,8 +26,13 @@ export class VaccinesComponent implements OnInit {
         this.vaccinesSubject = this.vaccineService.getVaccines();
         this.subscription = this.vaccinesSubject
             .subscribe(res => {
-                this.vaccines = res;
+                this.vaccinesDTO = res;
             });
+    }
+
+    deleteVaccine(i) {
+        let deleteVaccineDTO = this.vaccinesDTO[i];
+        this.vaccineService.deleteVaccine(deleteVaccineDTO.researchName);
     }
 
 }

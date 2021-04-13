@@ -1,4 +1,7 @@
 export class Vaccine {
-	manufacturerName: string;
-	numberOfDossesNeeded: number;
+    researchName: string;
+    manufacturerName: string;
+    vaccineType: string;
+    numberOfDoses: string;
+    availableDoses: string;
 }

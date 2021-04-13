@@ -1,0 +1,53 @@
+<form [formGroup]="addVaccineForm" (submit)="onSubmit()">
+
+    <label for="researchName">Istraživački naziv cjepiva:</label>
+    <br>
+    <input type="text" class="form-control" name="researchName" id="researchName" formControlName="researchName">
+    <br>
+    <span *ngIf="isInputInvalid(researchName)">
+        Unesite istraživački naziv cjepiva</span>
+    <br>
+
+    <label for="manufacturerName">Naziv proizvođača cjepiva:</label>
+    <br>
+    <input type="text" class="form-control" name="manufacturerName" id="manufacturerName"
+        formControlName="manufacturerName">
+    <br>
+    <span *ngIf="isInputInvalid(manufacturerName)">
+        Unesite naziv proizvođača cjepiva</span>
+    <br>
+
+    <label for="vaccineType">Vrsta cjepiva:</label>
+    <br>
+    <select name="vaccineType" id="vaccineType" formControlName="vaccineType">
+        <option value="RNA">RNA</option>
+        <option value="VIRAL_VECTOR">VIRAL_VECTOR</option>
+    </select>
+    <br>
+    <span *ngIf="isInputInvalid(vaccineType)">
+        Unesite vrstu cjepiva</span>
+    <br>
+
+    <label for="numberOfDoses">Broj doza potrebnih za administraciju cjepiva:</label>
+    <br>
+    <input type="number" class="form-control" name="numberOfDoses" id="numberOfDoses" formControlName="numberOfDoses">
+    <br>
+    <span *ngIf="isInputInvalid(numberOfDoses)">
+        Unesite broj doza potrebnih za administraciju cjepiva</span>
+    <br>
+
+    <label for="availableDoses">Broj dostupnih doza:</label>
+    <br>
+    <input type="number" class="form-control" name="availableDoses" id="availableDoses"
+        formControlName="availableDoses">
+    <br>
+    <span *ngIf="isInputInvalid(availableDoses)">
+        Unesite broj dostupnih doza</span>
+    <br>
+
+    <button type="submit" [disabled]="!addVaccineForm.valid">Dodaj cjepivo</button>
+    <br>
+
+    <span id="addVaccineErrorMessage" *ngIf="addVaccineErrorMessage">
+        {{addVaccineErrorMessage}}</span>
+</form>
