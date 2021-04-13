@@ -1,8 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { BehaviorSubject, Subscription } from 'rxjs';
 import { VaccineDTO } from '../shared/models/vaccineDTO';
 import { DataService } from '../shared/services/data.service';
+import { VaccineService } from '../shared/services/vaccine.service';
 
 @Component({
     selector: 'app-vaccine-detail',
@@ -11,16 +12,18 @@ import { DataService } from '../shared/services/data.service';
 })
 export class VaccineDetailComponent implements OnInit {
 
-    researchName: String;
     private routeSubscription: Subscription;
+    researchName: String;
 
     vaccineDTO: VaccineDTO = new VaccineDTO;
+    vaccineDTOSubject: BehaviorSubject<VaccineDTO> = new BehaviorSubject(null);
+    subscription : Subscription;
 
     errorMessage: String;
 
     constructor(
         private route: ActivatedRoute,
-        private dataService: DataService
+        private vaccineService: VaccineService
     ) { }
 
     ngOnInit(): void {
@@ -28,13 +31,17 @@ export class VaccineDetailComponent implements OnInit {
             this.researchName = params['researchName']
         });
 
-        this.dataService.getVaccine(this.researchName)
+        this.vaccineDTOSubject = this.vaccineService.getVaccine(this.researchName);
+        this.subscription = this.vaccineDTOSubject
             .subscribe(res => {
-                console.log(res);
-                this.vaccineDTO = res;
-                console.log(this.vaccineDTO);
+                if(res) {
+                    this.vaccineDTO = res;
+                    this.errorMessage = undefined;
+                } else {
+                    this.errorMessage = "Greska prilikom dohvacanja cjepiva.";
+                }
+                
             });
-
-    }
+        }
 
 }

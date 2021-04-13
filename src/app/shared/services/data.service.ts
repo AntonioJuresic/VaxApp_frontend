@@ -1,7 +1,10 @@
 import { HttpClient, HttpHeaderResponse, HttpHeaders } from "@angular/common/http";
-import { Injectable } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
+import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { VaccineDTO } from "../models/vaccineDTO";
+import { catchError, tap } from "rxjs/operators";
+import { of } from "rxjs";
 
 @Injectable({
     providedIn: 'root'
@@ -18,9 +21,33 @@ export class DataService {
 
     constructor(private http: HttpClient) { }
 
-    getVaccines() { return this.http.get<VaccineDTO[]>(this.apiRoot + this.vaccinesRoot); }
-    addVaccine(vaccine) { return this.http.post<VaccineDTO>(this.apiRoot + this.vaccinesRoot, vaccine); }
-    editVaccine(vaccine) { return this.http.put<VaccineDTO>(this.apiRoot + this.vaccinesRoot + `/${vaccine.researchName}`, vaccine); }
-    getVaccine(researchName) { return this.http.get<VaccineDTO>(this.apiRoot + this.vaccinesRoot + `/${researchName}`); }
+    getVaccines(): Observable<VaccineDTO[]> {
+        return this.http.get<VaccineDTO[]>(this.apiRoot + this.vaccinesRoot).pipe(
+            tap((vaccinesDTO: VaccineDTO[]) => console.log("Uspjesno dohvacanje")),
+            catchError((error: any) => { return this.errorHandler(error); })
+        )
+    }
+    
+    addVaccine(vaccine) {
+        return this.http.post<VaccineDTO>(this.apiRoot + this.vaccinesRoot, vaccine).pipe(
+            tap((vaccinteDTO: VaccineDTO) => console.log("Uspjesno dohvacanje")),
+            catchError((error: any) => { return this.errorHandler(error); })
+        )
+    }
+
+    getVaccine(researchName): Observable<VaccineDTO> {
+        return this.http.get<VaccineDTO>(this.apiRoot + this.vaccinesRoot + `/${researchName}`).pipe(
+            tap((vaccinteDTO: VaccineDTO) => console.log("Uspjesno dohvacanje")),
+            catchError((error: any) => { return this.errorHandler(error); })
+        )
+    }
+    
     deleteVaccine(researchName) { return this.http.delete<String>(this.apiRoot + this.vaccinesRoot + `/${researchName}`); }
+
+    errorHandler(error: any): Observable<undefined>{
+        console.log(error);
+        return of(undefined);
+    }
+
 }
+

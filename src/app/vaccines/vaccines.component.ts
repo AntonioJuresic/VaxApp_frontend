@@ -10,10 +10,12 @@ import { VaccineService } from '../shared/services/vaccine.service';
 })
 export class VaccinesComponent implements OnInit {
 
-    vaccinesDTO: VaccineDTO[];
-    vaccinesSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
-    subscription : Subscription;
-    
+    vaccinesDTO: VaccineDTO[] = [];
+    vaccinesDTOSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
+    subscription: Subscription;
+
+    errorMessage: String;
+
     QueryName = '';
 
     constructor(private vaccineService: VaccineService) { }
@@ -23,10 +25,15 @@ export class VaccinesComponent implements OnInit {
     }
 
     getVaccines(): void {
-        this.vaccinesSubject = this.vaccineService.getVaccines();
-        this.subscription = this.vaccinesSubject
+        this.vaccinesDTOSubject = this.vaccineService.getVaccines();
+        this.subscription = this.vaccinesDTOSubject
             .subscribe(res => {
-                this.vaccinesDTO = res;
+                if (res) {
+                    this.vaccinesDTO = res;
+                    this.errorMessage = undefined;
+                } else {
+                    this.errorMessage = "Greska prilikom dohvacanja cjepiva.";
+                }
             });
     }
 

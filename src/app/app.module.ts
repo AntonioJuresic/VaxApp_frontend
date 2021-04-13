@@ -9,7 +9,6 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VaccineNewComponent } from './vaccine-new/vaccine-new.component';
-import { VaccineEditComponent } from './vaccine-edit/vaccine-edit.component';
 
 @NgModule({
     declarations: [
@@ -17,8 +16,7 @@ import { VaccineEditComponent } from './vaccine-edit/vaccine-edit.component';
         VaccinesComponent,
         VaccineDetailComponent,
         FilterPipe,
-        VaccineNewComponent,
-        VaccineEditComponent
+        VaccineNewComponent
     ],
     imports: [
         BrowserModule,

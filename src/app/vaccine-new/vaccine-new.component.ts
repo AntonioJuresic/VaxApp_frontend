@@ -14,7 +14,7 @@ export class VaccineNewComponent implements OnInit {
     addVaccineForm: FormGroup;
     addVaccineErrorMessage: string;
 
-    newVaccine: Vaccine;
+    newVaccine: Vaccine = new Vaccine;
 
     constructor(
         private vaccineService: VaccineService,
@@ -48,8 +48,6 @@ export class VaccineNewComponent implements OnInit {
         if (this.addVaccineForm.invalid) {
             this.addVaccineErrorMessage = "Molimo Vas unesite sve podatke";
         } else {
-            this.newVaccine = new Vaccine();
-
             this.newVaccine.researchName = this.addVaccineForm.value.researchName;
             this.newVaccine.manufacturerName = this.addVaccineForm.value.manufacturerName;
             this.newVaccine.vaccineType = this.addVaccineForm.value.vaccineType;

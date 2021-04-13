@@ -8,31 +8,55 @@ import { DataService } from './data.service';
 })
 export class VaccineService {
 
-    vaccinesDTO: VaccineDTO[] = null;
-    vaccinesSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
+    vaccinesDTO: VaccineDTO[] = [];
+    vaccinesDTOSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
+
+
+    vaccineDTO: VaccineDTO = new VaccineDTO;
+    vaccineDTOSubject: BehaviorSubject<VaccineDTO> = new BehaviorSubject(null);
 
     constructor(private dataService: DataService) { this.ngOnInit(); }
 
-    ngOnInit() {
-        this.dataService.getVaccines()
-            .subscribe(res => {
-                console.log(res);
-                this.vaccinesDTO = res;
-                this.vaccinesSubject.next(this.vaccinesDTO);
-            });
-    }
+    ngOnInit() { }
 
     getVaccines() {
-        return this.vaccinesSubject;
+        this.dataService.getVaccines()
+            .subscribe(res => {
+                if(res) {
+                    this.vaccinesDTO = res;
+                    console.log(this.vaccinesDTO);
+                    this.vaccinesDTOSubject.next(this.vaccinesDTO);
+                } else {
+                    this.vaccinesDTOSubject.next(undefined);
+                }
+            });
+
+        return this.vaccinesDTOSubject;
     }
 
     addVaccine(newVaccine) {
         this.dataService.addVaccine(newVaccine)
             .subscribe(res => {
-                console.log(res);
-                this.vaccinesDTO.push(res);
-                this.vaccinesSubject.next(this.vaccinesDTO);
+                if(res) {
+                    this.vaccinesDTO.push(res);
+                    this.vaccinesDTOSubject.next(this.vaccinesDTO)
+                }
             });
+    }
+
+    getVaccine(researchName) {
+        this.dataService.getVaccine(researchName)
+            .subscribe(res => {
+                if (res) {
+                    this.vaccineDTO = res;
+                    console.log(this.vaccineDTO);
+                    this.vaccineDTOSubject.next(this.vaccineDTO);
+                } else {
+                    this.vaccineDTOSubject.next(undefined);
+                }
+            });
+
+        return this.vaccineDTOSubject;
     }
 
     deleteVaccine(researchName) {
@@ -40,7 +64,7 @@ export class VaccineService {
             .subscribe(res => {
                 console.log(res);
                 this.vaccinesDTO = this.vaccinesDTO.filter(v => v.researchName != researchName);
-                this.vaccinesSubject.next(this.vaccinesDTO);
+                this.vaccinesDTOSubject.next(this.vaccinesDTO);
             });
     }
 
