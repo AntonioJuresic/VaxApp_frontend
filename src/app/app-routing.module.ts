@@ -6,8 +6,7 @@ import { VaccinesComponent } from './vaccines/vaccines.component';
 
 const routes: Routes = [
     { path: "vaccines", component: VaccinesComponent },
-    { path: "vaccines/:researchName", component: VaccineDetailComponent },
-    { path: "new", component: VaccineNewComponent }
+    { path: "vaccines/:researchName", component: VaccineDetailComponent }
 
 ];
 
