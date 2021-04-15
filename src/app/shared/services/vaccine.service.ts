@@ -14,9 +14,7 @@ export class VaccineService {
     vaccineDTO: VaccineDTO = new VaccineDTO;
     vaccineDTOSubject: BehaviorSubject<VaccineDTO> = new BehaviorSubject(null);
 
-    constructor(private dataService: DataService) { this.ngOnInit(); }
-
-    ngOnInit() { }
+    constructor(private dataService: DataService) { }
 
     getVaccines() {
         this.dataService.getVaccines()
