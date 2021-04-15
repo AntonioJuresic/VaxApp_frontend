@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { BehaviorSubject, Subscription } from 'rxjs';
 import { VaccineDTO } from '../shared/models/vaccineDTO';
 import { DataService } from '../shared/services/data.service';
-import { VaccineService } from '../shared/services/vaccine.service';
 
 @Component({
     selector: 'app-vaccine-detail',

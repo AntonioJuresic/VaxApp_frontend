@@ -1,0 +1,8 @@
+<div *ngIf="sideEffectsDTO.length != 0">
+    <table style="text-align: left;">
+        <tr *ngFor="let sideEffectDTO of sideEffectsDTO">
+            <th>🤒</th>
+            <th><a [routerLink]="['/sideeffect/', sideEffectDTO.shortDescription]">{{sideEffectDTO.shortDescription}}</a></th>
+            <th>{{sideEffectDTO.shortDescription}}</th>
+        </tr>
+    </table>

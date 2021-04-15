@@ -1,0 +1,9 @@
+<div *ngIf="sideEffectDTO">
+    <p>{{sideEffectDTO.shortDescription}}</p>
+    <p>{{sideEffectDTO.frequency}}</p>
+    <p>{{sideEffectDTO.longDescription}}</p>
+</div>
+
+<ng-template #elseBlock>{{errorMessage}}</ng-template>
+
+<p>{{errorMessage}}</p>
