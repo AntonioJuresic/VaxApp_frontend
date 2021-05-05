@@ -9,6 +9,7 @@ import { FilterPipe } from './pipes/filter.pipe';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VaccineNewComponent } from './vaccine-new/vaccine-new.component';
+import { SideEffectsComponent } from './side-effects/side-effects.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +17,8 @@ import { VaccineNewComponent } from './vaccine-new/vaccine-new.component';
         VaccinesComponent,
         VaccineDetailComponent,
         FilterPipe,
-        VaccineNewComponent
+        VaccineNewComponent,
+        SideEffectsComponent
     ],
     imports: [
         BrowserModule,

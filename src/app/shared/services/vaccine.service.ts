@@ -8,11 +8,8 @@ import { DataService } from './data.service';
 })
 export class VaccineService {
 
-    vaccinesDTO: VaccineDTO[] = [];
-    vaccinesDTOSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
-
-    vaccineDTO: VaccineDTO = new VaccineDTO;
-    vaccineDTOSubject: BehaviorSubject<VaccineDTO> = new BehaviorSubject(null);
+    vaccineDTOs: VaccineDTO[] = [];
+    vaccineDTOsSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
 
     constructor(private dataService: DataService) { }
 
@@ -20,25 +17,25 @@ export class VaccineService {
         this.dataService.getVaccines()
             .subscribe((res: VaccineDTO[]) => {
                 if(res) {
-                    this.vaccinesDTO = res;
-                    console.log(this.vaccinesDTO);
+                    this.vaccineDTOs = res;
+                    console.log(this.vaccineDTOs);
                 }
 
-                this.vaccinesDTOSubject.next(res);
+                this.vaccineDTOsSubject.next(res);
             });
 
-        return this.vaccinesDTOSubject;
+        return this.vaccineDTOsSubject;
     }
 
     addVaccine(newVaccine) {
         this.dataService.addVaccine(newVaccine)
             .subscribe((res: VaccineDTO) => {
                 if(res) {
-                    this.vaccinesDTO.push(res);
-                    this.vaccinesDTOSubject.next(this.vaccinesDTO)
+                    this.vaccineDTOs.push(res);
+                    this.vaccineDTOsSubject.next(this.vaccineDTOs)
                 }
                     
-                this.vaccineDTOSubject.next(res);
+                this.vaccineDTOsSubject.next(this.vaccineDTOs);
             });
     }
 
@@ -50,8 +47,8 @@ export class VaccineService {
         this.dataService.deleteVaccine(researchName)
             .subscribe(res => {
                 console.log(res);
-                this.vaccinesDTO = this.vaccinesDTO.filter(v => v.researchName != researchName);
-                this.vaccinesDTOSubject.next(this.vaccinesDTO);
+                this.vaccineDTOs = this.vaccineDTOs.filter(v => v.researchName != researchName);
+                this.vaccineDTOsSubject.next(this.vaccineDTOs);
             });
     }
 

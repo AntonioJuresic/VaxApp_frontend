@@ -9,7 +9,7 @@
 
 <br>
 
-<div *ngIf="vaccinesDTO.length != 0">
+<div *ngIf="vaccineDTOs.length != 0">
     <table style="text-align: left;">
         <tr>
             <th></th>
@@ -18,7 +18,7 @@
             <th>Izbriši</th>
         </tr>
     
-        <tr *ngFor="let vaccineDTO of vaccinesDTO | filter: 'researchName' : QueryName; let i=index;">
+        <tr *ngFor="let vaccineDTO of vaccineDTOs | filter: 'researchName' : QueryName; let i=index;">
             <th>💉</th>
             <th><a [routerLink]="['/vaccines/', vaccineDTO.researchName]">{{vaccineDTO.researchName}}</a></th>
             <th>{{vaccineDTO.manufacturerName}}</th>

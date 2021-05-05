@@ -10,8 +10,8 @@ import { VaccineService } from '../shared/services/vaccine.service';
 })
 export class VaccinesComponent implements OnInit {
 
-    vaccinesDTO: VaccineDTO[] = [];
-    vaccinesDTOSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
+    vaccineDTOs: VaccineDTO[] = [];
+    vaccineDTOsSubject: BehaviorSubject<VaccineDTO[]> = new BehaviorSubject(null);
     subscription: Subscription;
 
     errorMessage: String;
@@ -25,16 +25,17 @@ export class VaccinesComponent implements OnInit {
     }
 
     getVaccines(): void {
-        this.vaccinesDTOSubject = this.vaccineService.getVaccines();
-        this.subscription = this.vaccinesDTOSubject
+        this.vaccineDTOsSubject = this.vaccineService.getVaccines();
+        this.subscription = this.vaccineDTOsSubject
             .subscribe(res => {
                 if (res) {
-                    this.vaccinesDTO = res;}
+                    this.vaccineDTOs = res;
+                }
             });
     }
 
     deleteVaccine(i) {
-        let deleteVaccineDTO = this.vaccinesDTO[i];
+        let deleteVaccineDTO = this.vaccineDTOs[i];
         this.vaccineService.deleteVaccine(deleteVaccineDTO.researchName);
     }
 
