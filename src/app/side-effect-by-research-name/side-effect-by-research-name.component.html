@@ -1,6 +1,6 @@
-<h2>Popis nuspojava za {{researchName}}</h2>
-
 <div *ngIf="sideEffectsDTOs.length != 0">
+    <h2>Popis nuspojava za {{researchName}}</h2>
+
     <table style="text-align: left;">
         <tr>
             <th>Kratki opis</th>
@@ -9,9 +9,13 @@
         </tr>
     
         <tr *ngFor="let sideEffectDTO of sideEffectsDTOs">
-            <th>{{sideEffectDTO.shortDescription}}</th>
-            <th>{{sideEffectDTO.longDescription}}</th>
-            <th>{{sideEffectDTO.frequency}}</th>
+            <td>{{sideEffectDTO.shortDescription}}</td>
+            <td>{{sideEffectDTO.longDescription}}</td>
+            <td>{{sideEffectDTO.frequency}}</td>
         </tr>
     </table>
+</div>
+
+<div *ngIf="sideEffectsDTOs.length == 0">
+    <h2>Cjepivo {{researchName}} nema nuspojave</h2>
 </div>

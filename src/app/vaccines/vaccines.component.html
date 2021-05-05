@@ -19,10 +19,10 @@
         </tr>
     
         <tr *ngFor="let vaccineDTO of vaccineDTOs | filter: 'researchName' : QueryName; let i=index;">
-            <th>💉</th>
-            <th><a [routerLink]="['/vaccines/', vaccineDTO.researchName]">{{vaccineDTO.researchName}}</a></th>
-            <th>{{vaccineDTO.manufacturerName}}</th>
-            <th><button (click)="deleteVaccine(i)">❌</button></th>
+            <td>💉</td>
+            <td><a [routerLink]="['/vaccines/', vaccineDTO.researchName]">{{vaccineDTO.researchName}}</a></td>
+            <td>{{vaccineDTO.manufacturerName}}</td>
+            <td><button (click)="deleteVaccine(i)">❌</button></td>
         </tr>
     </table>
 </div>
