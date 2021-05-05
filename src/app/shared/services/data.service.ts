@@ -25,7 +25,7 @@ export class DataService {
 
     getVaccines(): Observable<VaccineDTO[]> {
         return this.http.get<VaccineDTO[]>(this.apiRoot + this.vaccinesRoot).pipe(
-            tap((vaccinesDTO: VaccineDTO[]) => console.log("Uspjesno dohvacanje")),
+            tap((vaccinesDTO: VaccineDTO[]) => console.log("Uspjesno dohvacanje cjepiva")),
             catchError((error: any) => { return this.errorHandler<VaccineDTO[]>(error, []); })
         )
     }
@@ -39,7 +39,7 @@ export class DataService {
 
     getVaccine(researchName): Observable<VaccineDTO> {
         return this.http.get<VaccineDTO>(this.apiRoot + this.vaccinesRoot + `/${researchName}`).pipe(
-            tap((vaccinteDTO: VaccineDTO) => console.log("Uspjesno dohvacanje")),
+            tap((vaccinteDTO: VaccineDTO) => console.log("Uspjesno dohvacanje cjepiva " + researchName)),
             catchError((error: any) => { return this.errorHandler<VaccineDTO>(error); })
         )
     }
@@ -50,7 +50,7 @@ export class DataService {
 
     getSideEffects(): Observable<SideEffectDTO[]> {
         return this.http.get<SideEffectDTO[]>(this.apiRoot + this.sideEffectsRoot).pipe(
-            tap((sideEffectDTOs: SideEffectDTO[]) => console.log("Uspjesno dohvacanje")),
+            tap((sideEffectDTOs: SideEffectDTO[]) => console.log("Uspjesno dohvacanje nuspojava")),
             catchError((error: any) => { return this.errorHandler<SideEffectDTO[]>(error, []); })
         )
     }

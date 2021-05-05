@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { VaccineNewComponent } from './vaccine-new/vaccine-new.component';
 import { SideEffectsComponent } from './side-effects/side-effects.component';
+import { SideEffectByResearchNameComponent } from './side-effect-by-research-name/side-effect-by-research-name.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +19,8 @@ import { SideEffectsComponent } from './side-effects/side-effects.component';
         VaccineDetailComponent,
         FilterPipe,
         VaccineNewComponent,
-        SideEffectsComponent
+        SideEffectsComponent,
+        SideEffectByResearchNameComponent
     ],
     imports: [
         BrowserModule,

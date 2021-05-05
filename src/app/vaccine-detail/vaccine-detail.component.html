@@ -2,6 +2,8 @@
     <p>{{vaccineDTO.researchName}}</p>
     <p>{{vaccineDTO.manufacturerName}}</p>
     <p>{{vaccineDTO.numberOfDossesNeeded}}</p>
+
+    <app-side-effect-by-research-name [(researchName)]="vaccineDTO.researchName"></app-side-effect-by-research-name>
 </div>
 
 <ng-template #elseBlock>{{errorMessage}}</ng-template>
