@@ -22,6 +22,8 @@ export class SideEffectByShortDescriptionComponent implements OnInit {
     }
 
     getSideEffectsByShortDescription() {
+        this.hasBeenSelected = false;
+
         this.dataService.getSideEffectsByShortDescription(this.shortDescription)
             .subscribe((res: SideEffectDTO[]) => {
                 if(res) {

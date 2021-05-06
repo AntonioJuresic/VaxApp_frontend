@@ -12,7 +12,6 @@ import { VaccineNewComponent } from './vaccine-new/vaccine-new.component';
 import { SideEffectsComponent } from './side-effects/side-effects.component';
 import { SideEffectByResearchNameComponent } from './side-effect-by-research-name/side-effect-by-research-name.component';
 import { SideEffectByShortDescriptionComponent } from './side-effect-by-short-description/side-effect-by-short-description.component';
-import { SideEffectDetailComponent } from './side-effect-detail/side-effect-detail.component';
 
 @NgModule({
     declarations: [
@@ -23,8 +22,7 @@ import { SideEffectDetailComponent } from './side-effect-detail/side-effect-deta
         VaccineNewComponent,
         SideEffectsComponent,
         SideEffectByResearchNameComponent,
-        SideEffectByShortDescriptionComponent,
-        SideEffectDetailComponent
+        SideEffectByShortDescriptionComponent
     ],
     imports: [
         BrowserModule,
