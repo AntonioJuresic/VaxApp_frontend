@@ -1,0 +1,26 @@
+<input type="text" [(ngModel)]="shortDescription">
+
+<br>
+<br>
+
+<button (click)="getSideEffectsByShortDescription()">Dohvati cjepiva</button>
+
+<br>
+
+<div *ngIf="selectedSideEffectsDTOs.length != 0">
+    <table style="text-align: left;">
+        <tr>
+            <th>Kratki opis</th>
+            <th>Dugi opis</th>
+            <th>Učestalost</th>
+            <th>Cjepivo</th>
+        </tr>
+    
+        <tr *ngFor="let sideEffectDTO of selectedSideEffectsDTOs">
+            <td>{{sideEffectDTO.shortDescription}}</td>
+            <td>{{sideEffectDTO.longDescription}}</td>
+            <td>{{sideEffectDTO.frequency}}</td>
+            <td>{{sideEffectDTO.vaccineResearchName}}</td>
+        </tr>
+    </table>
+</div>

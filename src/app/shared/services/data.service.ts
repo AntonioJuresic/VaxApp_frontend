@@ -62,6 +62,14 @@ export class DataService {
         )
     }
 
+
+    getSideEffectsByShortDescription(shortDescription): Observable<SideEffectDTO[]> {
+        return this.http.get<SideEffectDTO[]>(this.apiRoot + this.sideEffectsRoot + '/search' + `/${shortDescription}`).pipe(
+            tap((sideEffectDTOs: SideEffectDTO[]) => console.log("Uspjesno dohvacanje nuspojava za kratki opis: " + shortDescription)),
+            catchError((error: any) => { return this.errorHandler<SideEffectDTO[]>(error, []); })
+        )
+    }
+
     errorHandler<T>(error: any, returnValue?: T): Observable<T>{
         console.error(error);
         return of(returnValue as T);
