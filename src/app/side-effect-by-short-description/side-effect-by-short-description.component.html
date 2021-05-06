@@ -11,16 +11,19 @@
     <table style="text-align: left;">
         <tr>
             <th>Kratki opis</th>
-            <th>Dugi opis</th>
-            <th>Učestalost</th>
-            <th>Cjepivo</th>
+            <th>Detalji</th>
         </tr>
     
         <tr *ngFor="let sideEffectDTO of selectedSideEffectsDTOs">
             <td>{{sideEffectDTO.shortDescription}}</td>
-            <td>{{sideEffectDTO.longDescription}}</td>
-            <td>{{sideEffectDTO.frequency}}</td>
-            <td>{{sideEffectDTO.vaccineResearchName}}</td>
+            <td><button (click)="selectSideEffect(sideEffectDTO)">Detalji</button></td>
         </tr>
     </table>
+</div>
+
+<div *ngIf="hasBeenSelected == true">
+    <p>{{selectedSideEffectDTO.shortDescription}}</p>
+    <p>{{selectedSideEffectDTO.longDescription}}</p>
+    <p>{{selectedSideEffectDTO.frequency}}</p>
+    <p>{{selectedSideEffectDTO.vaccineResearchName}}</p>
 </div>

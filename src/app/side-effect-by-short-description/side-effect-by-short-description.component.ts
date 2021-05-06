@@ -13,6 +13,9 @@ export class SideEffectByShortDescriptionComponent implements OnInit {
 
     shortDescription: string;
 
+    hasBeenSelected: boolean = false;
+    selectedSideEffectDTO: SideEffectDTO;
+
     constructor(private dataService: DataService) { }
 
     ngOnInit(): void {
@@ -26,6 +29,11 @@ export class SideEffectByShortDescriptionComponent implements OnInit {
                     console.log(this.selectedSideEffectsDTOs);
                 };
             });
+    }
+
+    selectSideEffect(selectedSideEffectDTO: SideEffectDTO) {
+        this.hasBeenSelected = true;
+        this.selectedSideEffectDTO = selectedSideEffectDTO;
     }
 
 }
